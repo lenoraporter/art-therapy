@@ -1,3 +1,7 @@
-<h2>Color picker...</h2>
+<div class="flex m-4 shadow-md">
+    {{#each (array "red" "teal" "yellow" "blue" "green" "grey" "white" "black" "purple" "orange" "pink" "indigo") as |color|}}
+        <div class="flex-1 text-center text-2xl align-middle p-4 cursor-pointer {{concat 'bg-' color}}"></div>
+    {{/each}}
+</div>
 
-Color is {{@color}}
+{{!-- Color is {{@color}} --}}
