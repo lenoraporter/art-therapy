@@ -1,6 +1,8 @@
 <div class="pin fixed flex-col">
     <div class="flex-shrink flex bg-black min-h-16">
-        <div class="flex-1 bg-grey">left</div>
+        <div class="flex-1 bg-grey">
+            <button onclick={{action 'newGame'}}>🎲 New Game</button>
+        </div>
         <div class="flex-1 bg-pink">
             <ColorPicker @color={{color}} @onChange={{action (mut color)}} />
         </div>
