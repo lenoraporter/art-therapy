@@ -4,6 +4,8 @@
             <button onclick={{action 'newGame'}}>🎲 New Game</button>
 
             [{{game.correctCellCount}} of 100 completed]
+            
+            Game complete: {{game.isComplete}}
         </div>
         <div class="flex-1 bg-pink">
             <ColorPicker @color={{color}} @onChange={{action (mut color)}} />
