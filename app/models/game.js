@@ -23,5 +23,11 @@ export default DS.Model.extend({
 
         this.set('templatePicture', this.store.createRecord('picture'));
         this.set('playerPicture', this.store.createRecord('picture'));
+    },
+
+    pickRandomTemplate() {
+        let randomTemplate = TEMPLATES[Math.floor(Math.random() * TEMPLATES.length)];
+        this.templatePicture.load(randomTemplate);
+        this.playerPicture.clear();
     }
 });
