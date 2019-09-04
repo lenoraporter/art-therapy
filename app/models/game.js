@@ -1,4 +1,6 @@
 import DS from 'ember-data';
+import cell from './cell';
+import { computed } from '@ember/object';
 
 const TEMPLATES = [
     [ "white", "white", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "white", "white", "white", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "white", "yellow", "yellow", "blue", "blue", "yellow", "yellow", "blue", "blue", "yellow", "yellow", "yellow", "yellow", "blue", "blue", "yellow", "yellow", "blue", "blue", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "black", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "black", "yellow", "yellow", "yellow", "black", "yellow", "yellow", "yellow", "yellow", "black", "yellow", "yellow", "yellow", "yellow", "yellow", "black", "red", "red", "black", "yellow", "yellow", "yellow", "white", "yellow", "yellow", "yellow", "red", "red", "yellow", "yellow", "yellow", "white", "white", "white", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "white", "white" ],
@@ -26,6 +28,21 @@ export default DS.Model.extend({
 
         this.pickRandomTemplate();
     },
+
+    correctCellCount: computed('templatePicture.cells.@each.{color}', 'playerPicture.cells.@each.{color}', function() {
+        let count = 0;
+    
+        for(let i=0; i<this.templatePicture.cells.length; i++) {
+          if (this.templatePicture.cells.objectAt(i).color === this.playerPicture.cells.objectAt(i).color) {
+            count++;
+          }
+        }
+    
+        return count;
+      }),
+    
+    isComplete: computed.equal('correctCellCount', 100),
+    
 
     pickRandomTemplate() {
         let randomTemplate = TEMPLATES[Math.floor(Math.random() * TEMPLATES.length)];
