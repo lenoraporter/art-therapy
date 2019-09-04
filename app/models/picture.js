@@ -19,6 +19,10 @@ export default DS.Model.extend({
         }
     },
 
+    clear() {
+        this.cells.setEach('color', 'white');
+    },
+
     serialized: computed.mapBy('cells', 'color'),
     asJson: computed('serialized.[]', function() {
         return JSON.stringify(this.serialized, null, 2);
