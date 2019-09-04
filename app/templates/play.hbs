@@ -1,11 +1,19 @@
 <div class="pin fixed flex-col">
     <div class="flex-shrink flex bg-black min-h-16">
-        <div class="flex-1 bg-grey">
-            <button onclick={{action 'newGame'}}>🎲 New Game</button>
+        <div class="flex-1 flex p-4 {{if game.isComplete 'bg-green' 'bg-black'}}">
+            <button 
+                class="flex-shrink w-1/4 bg-pink hover:bg-pink-light text-white border-pink-lighter font-bold py-2 rounded"
+                onclick={{action 'newGame'}}>
+                🎲 New Game
+            </button>
 
-            [{{game.correctCellCount}} of 100 completed]
-            
-            Game complete: {{game.isComplete}}
+            <div class="flex-1 text-center text-white m-auto">
+                {{#if game.isComplete}}
+                    <h1>You did it!</h1>
+                {{else}}
+                    <h3>{{game.correctCellCount}} of 100 completed</h3>
+                {{/if}}
+            </div>
         </div>
         <div class="flex-1 bg-pink">
             <ColorPicker @color={{color}} @onChange={{action (mut color)}} />
